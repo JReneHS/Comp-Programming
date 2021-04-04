@@ -1,0 +1,29 @@
+#executable files
+.exe
+*.exe
+**/.exe
+
+#.out files
+.out
+*.out
+**/.out
+
+#.in files
+.in
+*.in
+**/.in
+
+#.txt files
+.txt
+*.txt
+**/.txt
+
+#mkv files
+.mkv
+*.mkv
+**/.mkv
+
+#gif files
+.gif
+*.gif
+**/.gif
