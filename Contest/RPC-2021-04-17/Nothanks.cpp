@@ -74,8 +74,26 @@ const double PI = acos(-1.0);
 void solve(){
 
 }
+const int lim = 90057;
+vi cards(lim,0);
 
 int main() { _io
-  
-  return 0;
+    int t,c; cin>>t;
+    while(t--){
+        cin>>c;
+        cards[c]=1;
+    }
+    int l=1,r=1;
+    lli res = 0;
+    while(1){
+        while(cards[r]!= 0)r++;
+        l = r;
+        res += l;
+        while(cards[r]!=1)r++;
+        if(r>lim) break;
+    }
+
+    cout<<res<<endl;
+return 0;
 }
+

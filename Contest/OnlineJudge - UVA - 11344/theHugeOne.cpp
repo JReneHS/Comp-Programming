@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -71,11 +72,85 @@ typedef complex<ld> cd;
 
 const double PI = acos(-1.0);
 
+int c2(string ss){
+    int n = ss[0] - '0';
+    return (n & 1 == 0);
+}
+
+int c3(string ss){
+    int n = szi(ss);
+    int digitSum = 0;
+    for (int i=0; i < n; i++)
+        digitSum += (ss[i]-'0');
+    return (digitSum % 3 == 0);
+}
+int c4(string ss){
+    int n = szi(ss);
+    if (n == 1)
+        return ((ss[0] - '0') % 4 == 0);
+    int last = ss[n - 1] - '0';
+    int second_last = ss[n - 2] - '0';
+    return ((second_last * 10 + last) % 4 == 0);
+}
+
+int c5(string ss){
+    return (ss[0] == '0' or ss[0] == '5');
+}
+
+int c6(string ss){
+    return c2(ss) && c3(ss);
+}
+
+int c7(string ss){
+
+}
+
+int c8(string ss){
+
+}
+
+int c9(string ss){
+
+}
+
+int c10(string ss){
+    return (ss[0] == '0');
+}
+
+int c11(string ss){
+
+}
+
+int c12(string ss){
+
+}
+
 void solve(){
+    string ss; cin>>ss;
+    int nd,res = 0; cin>>nd;
+    vi divs(nd);
+    each(x,divs){
+        cin>>x;
+        if(x == 1)res++;
+        else if(x == 2) res += c2(ss);
+        else if(x == 3) res += c3(ss);
+        else if(x == 4) res += c4(ss);
+        else if(x == 5) res += c5(ss);
+        else if(x == 6) res += c6(ss);
+        else if(x == 7) res += c7(ss);
+        else if(x == 8) res += c8(ss);
+        else if(x == 9) res += c9(ss);
+        else if(x == 10) res += c10(ss);
+        else if(x == 11) res += c11(ss);
+        else res += c12(ss);
+    }
 
 }
 
 int main() { _io
-  
-  return 0;
+    int ca; cin>>ca;
+    while(ca--)
+        solve();
+    return 0;
 }
+

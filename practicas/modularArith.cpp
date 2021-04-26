@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -75,7 +76,72 @@ void solve(){
 
 }
 
-int main() { _io
-  
-  return 0;
+tuple<lli,lli,lli> extgcd(lli a, lli b){
+    if(b == 0){
+        if(a > 0) return {a, 1, 0};
+        else return {-a, -1, 0};
+    }else{
+        auto[d, x, y] = extgcd(b, a%b);
+        return {d, y, x - (a/b)*y};
+    }
 }
+
+lli sum(lli a, lli b, lli m){
+    int ans = a+b;
+    if(ans >= m) ans -= m;
+    return ans;
+}
+
+lli sub(lli a, lli b, lli m){
+    int ans = a-b;
+    if(ans < 0) ans += m;
+    return ans;
+}
+
+lli mult(lli a, lli b, lli m){
+    int ans = a*b % m;
+    return ans;
+}
+
+lli inverse(lli a, lli m){
+    auto[d, x, y] = extgcd(a, m);
+    if(d != 1){
+        return -1;
+    }
+    if(x < 0) x += m;
+    return x;
+}
+
+int main() { _io
+    lli n,a,b,t,res;
+    char p;
+    string pp;
+    while(1) {
+        cin>>n>>t;
+        if(n==0 and t==0) break;
+        while(t--) {
+            cin>>a>>p>>b;
+            switch(p) {
+                case '+':
+                    res = sum(a,b,n);
+                    break;
+                case '-':
+                    res = sub(a,b,n);
+                    break;
+                case '*':
+                    res = mult(a,b,n);
+                    break;
+                case '/':
+                    lli inv = inverse(b,n);
+                    if(inv == -1) res=inv;
+                    else
+                        a %= n;
+                        res = a * inv % n;
+                    break;
+            }
+            cout<<res<<endl;
+        }
+    }
+    return 0;
+}
+

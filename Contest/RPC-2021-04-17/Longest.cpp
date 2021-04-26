@@ -71,11 +71,58 @@ typedef complex<ld> cd;
 
 const double PI = acos(-1.0);
 
-void solve(){
-
+struct cont
+{
+  char str[50];
+  int len;
+};
+struct cont lcs(string a,string b) {
+  int m=a.length(), n=b.length(), i , j;
+  int dp[m+1][n+1];
+  forie(i,m)dp[i][0]=0;
+  forie(i,n)dp[0][i]=0;
+  foriea(i,1,m) {
+    foriea(j,1,n) {
+      if(a[i-1]==b[j-1])
+        dp[i][j]=1+dp[i-1][j-1];
+      else
+        dp[i][j]=max(dp[i][j-1],dp[i-1][j]);
+    }
+  }
+  int len,l=dp[m][n];
+  len=l;
+  char c[l+1];
+  c[l]='\0';
+  i=m;
+  j=n;
+  while(i>0 and j>0) {
+    if(a[i-1]==b[j-1]) {
+      c[l-1]=a[i-1];
+      l--;
+      i--;
+      j--;
+    } else if(dp[i][j-1]>dp[i-1][j])
+      j--;
+    else
+      i--;
+  }
+  struct cont s;
+  strcpy(s.str,c);
+  s.len=len;
+  return s;
+}
+int main()
+{ _io
+  int n,ss;
+  cin>>n>>ss;
+  string a[n];
+  fori(i,n)cin>>a[i];
+  struct cont c;
+  c=lcs(a[0],a[1]);
+  foria(i,2,n) {
+    string s=c.str;
+    c = lcs(s,a[i]);
+  }
+  cout<<c.len<<endl;
 }
 
-int main() { _io
-  
-  return 0;
-}
